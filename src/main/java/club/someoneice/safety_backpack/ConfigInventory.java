@@ -17,6 +17,7 @@ import java.util.Map;
 public final class ConfigInventory {
     static final List<String> slotPosList = Lists.newArrayListWithExpectedSize(8);
     static final StringBuilder playerInventoryStartPos = new StringBuilder();
+    static final StringBuilder safetyBackpackIcon = new StringBuilder();
 
     static final File configPath = new File(Loader.instance().getConfigDir(), SafetyBackpack.NAME + ".json");
 
@@ -30,6 +31,7 @@ public final class ConfigInventory {
             final Map<String, Object> data = Maps.newHashMap();
             data.put("slotPos", slotPosList);
             data.put("inventoryPos", playerInventoryStartPos.toString());
+            data.put("iconName", safetyBackpackIcon.toString());
 
             Files.write(configPath.toPath(), gson.toJson(data).getBytes());
             return;
@@ -48,6 +50,11 @@ public final class ConfigInventory {
             playerInventoryStartPos.setLength(0);
             playerInventoryStartPos.append(data.get("inventoryPos"));
         }
+
+        if (data.containsKey("iconName")) {
+            safetyBackpackIcon.setLength(0);
+            safetyBackpackIcon.append(data.get("iconName"));
+        }
     }
 
     private static void dataInit() {
@@ -62,5 +69,7 @@ public final class ConfigInventory {
         slotPosList.add("106,24");
 
         playerInventoryStartPos.append("8,59");
+
+        safetyBackpackIcon.append("safety_backpack:safety_backpack");
     }
 }
