@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public final class GUIBackpack extends AbstractContainerScreen<ContainerBackpack> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(SafetyBackpack.MODID, "textures/gui/shecker.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(SafetyBackpack.MODID, "textures/gui/safety_backpack.png");
 
     public GUIBackpack(ContainerBackpack shaker, Inventory inventory, Component cup) {
         super(shaker, inventory, cup);
