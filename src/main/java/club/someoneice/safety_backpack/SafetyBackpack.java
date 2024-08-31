@@ -11,20 +11,23 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.io.IOException;
+
 @Mod(SafetyBackpack.MODID)
 public final class SafetyBackpack {
     public static final String MODID = "safety_backpack";
 
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
-    public static final RegistryObject<Item> SAFETY_BACKPACK = ITEMS.register("safety_Backpack", ItemSafetyBackpack::new);
+    public static final RegistryObject<Item> SAFETY_BACKPACK = ITEMS.register("safety_backpack", ItemSafetyBackpack::new);
 
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MODID);
     public static final RegistryObject<MenuType<ContainerBackpack>> BACKPACK =
             MENUS.register("safety_backpack", () -> IForgeMenuType.create(ContainerBackpack::new));
 
 
-    public SafetyBackpack() {
+    public SafetyBackpack() throws IOException {
         var bus = FMLJavaModLoadingContext.get().getModEventBus();
+        ConfigInventory.configInit();
         ITEMS.register(bus);
         MENUS.register(bus);
         bus.addListener(this::clientSetup);

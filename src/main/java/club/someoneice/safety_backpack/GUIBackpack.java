@@ -27,4 +27,9 @@ public final class GUIBackpack extends AbstractContainerScreen<ContainerBackpack
         super.render(guiGraphics, mouseX, mouseY, delta);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
+
+    @Override
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        /* Do nothing */
+    }
 }
